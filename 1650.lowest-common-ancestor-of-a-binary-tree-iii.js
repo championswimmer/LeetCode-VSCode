@@ -30,19 +30,10 @@ var lowestCommonAncestor = function (p, q) {
   }
   node = q
   while (node) {
-    pathToQ.push(node)
+    if (pathToP.includes(node)) {
+      return node
+    }
     node = node.parent
   }
-  let lca = null
-  while (pathToQ.length) {
-    const nodeP = pathToP.pop()
-    const nodeQ = pathToQ.pop()
-    if (nodeP === nodeQ) {
-      lca = nodeP
-    } else {
-      break
-    }
-  }
-  return lca
 }
 // @lc code=end
