@@ -71,19 +71,19 @@ var shortestPathBinaryMatrix = function(grid) {
     if (grid.length === 1) return 1;
 
     const n = grid.length;
-    const queue = [[[0,0]]]; // queue of paths
+    const queue = [{pos: [0,0], len: 1}]; // queue of paths
     const visited = new Set();
     visited.add([0,0].toString());
     while (queue.length) {
       const pathSoFar = queue.shift();
-      const [i, j] = pathSoFar[pathSoFar.length - 1];
+      const [i, j] = pathSoFar.pos;
       if (i === n - 1 && j === n - 1) {
-        return pathSoFar.length;
+        return pathSoFar.len;
       }
       for (let [x, y] of [[i-1, j-1], [i-1, j], [i-1, j+1], [i, j-1], [i, j+1], [i+1, j-1], [i+1, j], [i+1, j+1]]) {
         if (x >= 0 && x < n && y >= 0 && y < n && grid[x][y] === 0 && !visited.has([x, y].toString())) {
           visited.add([x, y].toString());
-          queue.push([...pathSoFar, [x, y]]);
+          queue.push({pos: [x, y], len: pathSoFar.len + 1});
         }
       }
     }
