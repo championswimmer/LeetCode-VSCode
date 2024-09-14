@@ -1,0 +1,31 @@
+Certainly! Let's break down the code and explain its functionality:
+
+1. The function `minRemoveToMakeValid` takes a string `s` as input.
+
+2. It splits the input string into an array of characters (`sArr`).
+
+3. It initializes an empty array `outArr` to store the valid characters.
+
+4. It initializes a variable `open` to keep track of the number of open parentheses.
+
+5. The code then iterates through each character in `sArr`:
+   - If the character is not a parenthesis, it's added to `outArr`.
+   - If it's an opening parenthesis '(', it increments `open` and adds it to `outArr`.
+   - If it's a closing parenthesis ')':
+     - If `open` is 0 (no matching opening parenthesis), it skips this character.
+     - Otherwise, it decrements `open` and adds the character to `outArr`.
+
+6. After the first pass, `outArr` contains all valid characters and parentheses, but may have extra opening parentheses.
+
+7. The code then enters a while loop to remove any extra opening parentheses:
+   - It finds the last occurrence of '(' in `outArr` and removes it.
+   - It decrements `open`.
+   - This continues until `open` becomes 0.
+
+8. Finally, it joins the characters in `outArr` back into a string and returns it.
+
+This algorithm effectively removes the minimum number of parentheses to make the string valid by:
+- Removing closing parentheses without matching opening ones in the first pass.
+- Removing extra opening parentheses from right to left in the second pass.
+
+The time complexity is O(n), where n is the length of the input string, as it makes two passes through the string. The space complexity is also O(n) to store the character arrays.
